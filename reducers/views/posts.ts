@@ -32,15 +32,7 @@ function menuActions(state: {[postId: string]: {[actionId: string]: {text: strin
     switch (action.type) {
     case ActionTypes.SELECT_ATTACHMENT_MENU_ACTION: {
         const nextState = {...state};
-        if (nextState[action.data.postId]) {
-            nextState[action.data.postId] = {
-                ...nextState[action.data.postId],
-                ...action.data.actions,
-            };
-        } else {
-            nextState[action.data.postId] = action.data.actions;
-        }
-        return nextState;
+        return nextState[action.data.postId] ? { ...nextState[action.data.postId], ...action.data.actions, } : action.data.actions
     }
     case UserTypes.LOGOUT_SUCCESS:
         return {};
